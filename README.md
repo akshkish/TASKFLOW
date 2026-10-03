@@ -14,6 +14,22 @@ A full-stack task management application built with the MERN stack, designed to 
 - 🗄️ MongoDB database integration
 - ⚡ RESTful backend API
 - 🌐 Ready for cloud deployment
+  ## 🌐 Live Demo
+
+Try TaskFlow online:
+
+- **Frontend (Vercel):** https://taskflow-alpha-lyart-95.vercel.app/
+- **Backend API (Render):** https://taskflow-api-hycd.onrender.com/
+
+Feel free to explore the application, create an account, manage tasks, and try the Pomodoro and music features.
+
+### 🚀 Deployment
+
+| Component | Platform |
+|---|---|
+| Frontend | Vercel |
+| Backend | Render |
+| Database | MongoDB Atlas |
 
 ## 🛠️ Tech Stack
 
