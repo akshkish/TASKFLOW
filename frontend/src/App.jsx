@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import Auth from "./Auth";
+import Auth from "./Auth"; 
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ambientModes = {
     rain: {
@@ -118,7 +120,7 @@ function App() {
     useEffect(() => {
         if (!user || !token) return;
 
-        fetch("http://localhost:5000/api/tasks", {
+        fetch("https://taskflow-api-hycd.onrender.com/api/tasks",{
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -509,7 +511,7 @@ function App() {
         e.preventDefault();
 
         const response = await fetch(
-            "http://localhost:5000/api/tasks",
+            "https://taskflow-api-hycd.onrender.com/api/tasks",
             {
                 method: "POST",
                 headers: {
@@ -543,7 +545,7 @@ function App() {
 
     const deleteTask = async (id) => {
         const response = await fetch(
-            `http://localhost:5000/api/tasks/${id}`,
+            `https://taskflow-api-hycd.onrender.com/api/tasks/${id}`,
             {
                 method: "DELETE",
                 headers: {
@@ -576,7 +578,7 @@ function App() {
         e.preventDefault();
 
         const response = await fetch(
-            `http://localhost:5000/api/tasks/${editId}`,
+            `https://taskflow-api-hycd.onrender.com/api/tasks/${editId}`,
             {
                 method: "PUT",
                 headers: {
@@ -617,7 +619,7 @@ function App() {
         status
     ) => {
         const response = await fetch(
-            `http://localhost:5000/api/tasks/${id}`,
+            `https://taskflow-api-hycd.onrender.com/api/tasks${id}`,
             {
                 method: "PUT",
                 headers: {
