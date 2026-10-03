@@ -10,41 +10,43 @@ function Auth({ onLogin }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const endpoint = isLogin
-            ? "login"
-            : "register";
+        const endpoint = isLogin ? "login" : "register";
 
         const body = isLogin
             ? { email, password }
             : { name, email, password };
 
-        const response = await fetch(
-            `http://localhost:5000/api/auth/${endpoint}`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(body)
+        try {
+            const response = await fetch(
+                `https://taskflow-api-hycd.onrender.com/api/auth/${endpoint}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setMessage(data.message || "Something went wrong");
+                return;
             }
-        );
 
-        const data = await response.json();
+            if (isLogin) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
 
-        if (!response.ok) {
-            setMessage(data.message || "Something went wrong");
-            return;
-        }
-
-        if (isLogin) {
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("user", JSON.stringify(data.user));
-
-            onLogin(data.user);
-        } else {
-            setMessage("Registration successful. Please login.");
-            setIsLogin(true);
-            setPassword("");
+                onLogin(data.user);
+            } else {
+                setMessage("Registration successful. Please login.");
+                setIsLogin(true);
+                setPassword("");
+            }
+        } catch (error) {
+            setMessage("Unable to connect to the server. Please try again.");
         }
     };
 

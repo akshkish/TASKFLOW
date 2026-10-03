@@ -20,10 +20,11 @@ router.post("/", protect, async (req, res) => {
         res.status(201).json(savedTask);
 
     } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
-    }
+    console.error("CREATE TASK ERROR:", error);
+    res.status(500).json({
+        error: error.message
+    });
+}
 });
 
 
