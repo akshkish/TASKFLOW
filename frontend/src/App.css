@@ -1,0 +1,1908 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "VT323", monospace;
+}
+
+button,
+input,
+select {
+    font-family: "VT323", monospace;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 28px 20px 60px;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #ff5ebc 0 4%,
+            transparent 18%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            #6c63ff 0 5%,
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            #16d9b5 0 5%,
+            transparent 25%
+        ),
+        #17152d;
+
+    color: #fff;
+
+    transition:
+        background 0.8s ease;
+}
+
+/* =========================
+   COLOR WORLDS
+========================= */
+
+.ambience-rain {
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            #4d9cff 0 4%,
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            #7b61ff 0 5%,
+            transparent 22%
+        ),
+        linear-gradient(
+            135deg,
+            #101b3c,
+            #162d55,
+            #17143c
+        );
+}
+
+.ambience-fire {
+    background:
+        radial-gradient(
+            circle at 50% 90%,
+            #ff6b35 0 5%,
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 15% 20%,
+            #ffb627 0 5%,
+            transparent 20%
+        ),
+        linear-gradient(
+            135deg,
+            #3a1321,
+            #5b2020,
+            #211127
+        );
+}
+
+.ambience-ocean {
+    background:
+        radial-gradient(
+            circle at 50% 100%,
+            #00e5ff 0 4%,
+            transparent 25%
+        ),
+        linear-gradient(
+            180deg,
+            #101a4c,
+            #124e72,
+            #078c9d
+        );
+}
+
+.ambience-forest {
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #71ff8a 0 3%,
+            transparent 20%
+        ),
+        linear-gradient(
+            135deg,
+            #0d2b24,
+            #174b35,
+            #152642
+        );
+}
+
+.ambience-cafe {
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #ffbf69 0 4%,
+            transparent 20%
+        ),
+        linear-gradient(
+            135deg,
+            #42251c,
+            #70442b,
+            #29203c
+        );
+}
+
+.ambience-keyboard {
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #c77dff 0 4%,
+            transparent 20%
+        ),
+        linear-gradient(
+            135deg,
+            #191339,
+            #33205a,
+            #162d52
+        );
+}
+
+/* =========================
+   PIXEL CLOUDS
+========================= */
+
+.pixel-cloud {
+    position: fixed;
+    width: 120px;
+    height: 35px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent 10px,
+            #fff 10px 100px,
+            transparent 100px
+        );
+
+    box-shadow:
+        25px -18px 0 -4px #fff,
+        60px -25px 0 -7px #fff,
+        90px -10px 0 -4px #fff;
+
+    animation: cloudMove 22s linear infinite;
+}
+
+.cloud-one {
+    top: 12%;
+    left: -150px;
+}
+
+.cloud-two {
+    top: 45%;
+    right: -180px;
+    animation-delay: -10s;
+}
+
+@keyframes cloudMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(120vw);
+    }
+}
+
+/* =========================
+   RAIN
+========================= */
+
+.rain-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.rain-layer span {
+    position: absolute;
+    top: -30px;
+
+    width: 3px;
+    height: 18px;
+
+    background: #7de2ff;
+
+    box-shadow: 2px 0 #b9f3ff;
+
+    animation: rainFall 0.8s linear infinite;
+}
+
+@keyframes rainFall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+/* =========================
+   FIRE
+========================= */
+
+.fire-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.fire-layer span {
+    position: absolute;
+    bottom: -10px;
+
+    width: 7px;
+    height: 7px;
+
+    background: #ffd166;
+
+    box-shadow:
+        5px 0 #ff6b35,
+        -5px 0 #ff9f1c;
+
+    animation: ember 2s linear infinite;
+}
+
+@keyframes ember {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-100vh)
+            translateX(30px);
+    }
+}
+
+/* =========================
+   OCEAN
+========================= */
+
+.ocean-layer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+
+    pointer-events: none;
+    z-index: 2;
+}
+
+.pixel-wave {
+    position: absolute;
+    width: 120%;
+    left: -10%;
+    height: 30px;
+
+    border-top: 7px solid #57e8ff;
+
+    animation: wave 4s ease-in-out infinite;
+}
+
+.wave-one {
+    bottom: 70px;
+}
+
+.wave-two {
+    bottom: 40px;
+    animation-delay: -1s;
+}
+
+.wave-three {
+    bottom: 10px;
+    animation-delay: -2s;
+}
+
+@keyframes wave {
+    50% {
+        transform: translateX(30px);
+    }
+}
+
+/* =========================
+   FOREST
+========================= */
+
+.forest-layer {
+    position: fixed;
+    inset: 10% 0 auto;
+
+    text-align: center;
+
+    color: #a4ffbe;
+
+    font-size: 30px;
+
+    letter-spacing: 25px;
+
+    opacity: 0.3;
+
+    z-index: 2;
+
+    animation: stars 3s infinite alternate;
+}
+
+@keyframes stars {
+    to {
+        opacity: 0.7;
+    }
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+
+    position: relative;
+    z-index: 5;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+    margin-bottom: 15px;
+
+    border: 4px solid #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4fa3,
+            #725cff,
+            #2ad9c5
+        );
+
+    box-shadow:
+        8px 8px 0 #0b0820;
+
+    animation: pop 0.5s ease;
+}
+
+.logo {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 24px;
+
+    text-shadow:
+        4px 4px 0 #40204f;
+}
+
+.subtitle {
+    margin-top: 10px;
+    font-size: 21px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.theme-button {
+    padding: 11px 14px;
+
+    background: #ffd166;
+
+    color: #30203d;
+
+    border: 3px solid #30203d;
+
+    box-shadow:
+        4px 4px 0 #30203d;
+
+    font-size: 18px;
+
+    transition: 0.15s;
+}
+
+.theme-button:hover {
+    transform: translate(-3px, -3px);
+}
+
+/* =========================
+   NAV
+========================= */
+
+.focus-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.focus-nav a {
+    padding: 14px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 8px;
+
+    border: 3px solid #fff;
+
+    box-shadow:
+        4px 4px 0 #0b0820;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6b9d,
+            #6c63ff
+        );
+
+    transition: 0.15s;
+}
+
+.focus-nav a:nth-child(2) {
+    background:
+        linear-gradient(
+            135deg,
+            #ff7043,
+            #ffbf3f
+        );
+}
+
+.focus-nav a:nth-child(3) {
+    background:
+        linear-gradient(
+            135deg,
+            #6c63ff,
+            #21d4fd
+        );
+}
+
+.focus-nav a:nth-child(4) {
+    background:
+        linear-gradient(
+            135deg,
+            #23d5ab,
+            #5b86e5
+        );
+}
+
+.focus-nav a:hover {
+    transform:
+        translate(-3px, -3px);
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+.dashboard-card {
+    min-height: 210px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border: 4px solid #fff;
+
+    box-shadow:
+        7px 7px 0 #0b0820;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5ebc,
+            #7b61ff
+        );
+
+    transition: 0.2s;
+}
+
+.task-stat {
+    background:
+        linear-gradient(
+            135deg,
+            #ff6b9d,
+            #c850c0
+        );
+}
+
+.audio-stat {
+    background:
+        linear-gradient(
+            135deg,
+            #00c6ff,
+            #0072ff
+        );
+}
+
+.pomodoro-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ff512f,
+            #dd2476
+        );
+}
+
+.dashboard-card:hover {
+    transform:
+        translate(-4px, -4px);
+}
+
+.pixel-icon,
+.tomato {
+    font-size: 34px;
+    margin-bottom: 8px;
+
+    filter:
+        drop-shadow(
+            4px 4px 0
+            rgba(0, 0, 0, 0.35)
+        );
+}
+
+.dashboard-card h3 {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 10px;
+
+    margin-bottom: 12px;
+}
+
+.dashboard-card strong {
+    display: block;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 30px;
+}
+
+.dashboard-card small {
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 18px;
+
+    opacity: 0.8;
+}
+
+/* =========================
+   TIMER
+========================= */
+
+.timer {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 25px;
+
+    margin: 10px 0;
+}
+
+.timer-running .timer {
+    animation:
+        timerPulse 1s infinite alternate;
+}
+
+@keyframes timerPulse {
+    to {
+        transform: scale(1.05);
+        text-shadow:
+            4px 4px 0 #7c1838;
+    }
+}
+
+.pomodoro-modes {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pomodoro-modes button {
+    padding: 6px 9px;
+
+    border: 2px solid #fff;
+
+    background: #722b5e;
+
+    color: #fff;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 7px;
+}
+
+.pomodoro-modes button.active {
+    background: #ffd166;
+    color: #3a1730;
+}
+
+.timer-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 9px;
+}
+
+.timer-actions button {
+    padding: 8px 10px;
+
+    border: 3px solid #fff;
+
+    background: #2dd4bf;
+
+    color: #172033;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 7px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.form-container,
+.media-section {
+    padding: 25px;
+
+    margin-bottom: 35px;
+
+    border: 4px solid #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(55, 38, 93, 0.96),
+            rgba(29, 47, 87, 0.96)
+        );
+
+    box-shadow:
+        7px 7px 0 #0b0820;
+}
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.section-heading span {
+    font-size: 28px;
+}
+
+.section-heading h2 {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 13px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.task-form {
+    display: grid;
+    gap: 13px;
+}
+
+.task-form input,
+.task-form select {
+    padding: 13px;
+
+    background: #19152f;
+
+    color: white;
+
+    border: 3px solid #7cecff;
+
+    outline: none;
+
+    font-size: 20px;
+}
+
+.task-form input:focus,
+.task-form select:focus {
+    border-color: #ff72c6;
+
+    box-shadow:
+        4px 4px 0 #4a285b;
+}
+
+.primary-button {
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff5ebc,
+            #7c5cff,
+            #22d3ee
+        );
+
+    color: white;
+
+    border: 4px solid #fff;
+
+    box-shadow:
+        5px 5px 0 #09071a;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 10px;
+}
+
+/* =========================
+   TASKS
+========================= */
+
+.task-summary {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.task-summary span {
+    padding: 7px 11px;
+
+    border: 2px solid #fff;
+
+    background: #5840a8;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 7px;
+}
+
+.tasks-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                280px,
+                1fr
+            )
+        );
+
+    gap: 20px;
+}
+
+.task-card {
+    padding: 20px;
+
+    border: 4px solid #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2f2357,
+            #283e69
+        );
+
+    box-shadow:
+        6px 6px 0 #0b0820;
+
+    transition: 0.2s;
+}
+
+.task-card:nth-child(3n + 1) {
+    background:
+        linear-gradient(
+            135deg,
+            #493078,
+            #813c72
+        );
+}
+
+.task-card:nth-child(3n + 2) {
+    background:
+        linear-gradient(
+            135deg,
+            #24536c,
+            #355f91
+        );
+}
+
+.task-card:nth-child(3n + 3) {
+    background:
+        linear-gradient(
+            135deg,
+            #365f45,
+            #326879
+        );
+}
+
+.task-card:hover {
+    transform:
+        translate(-4px, -4px);
+}
+
+.task-card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.task-card h3 {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+.description {
+    margin:
+        12px 0 18px;
+
+    font-size: 20px;
+
+    opacity: 0.8;
+}
+
+.priority {
+    padding: 5px 8px;
+
+    border: 2px solid #fff;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 7px;
+
+    height: fit-content;
+}
+
+.priority.low {
+    background: #24d6a3;
+}
+
+.priority.medium {
+    background: #f7b731;
+}
+
+.priority.high {
+    background: #ff5c7a;
+}
+
+.status-select {
+    width: 100%;
+
+    padding: 9px;
+
+    margin-bottom: 16px;
+
+    background: #1c1938;
+
+    color: white;
+
+    border: 3px solid #67e8f9;
+
+    font-size: 18px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button,
+.delete-button {
+    flex: 1;
+
+    padding: 10px;
+
+    border: 3px solid #281b38;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 8px;
+}
+
+.edit-button {
+    background: #ffd166;
+}
+
+.delete-button {
+    background: #ff6b81;
+}
+
+/* =========================
+   YOUTUBE
+========================= */
+
+.youtube-box {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px;
+
+    border: 3px dashed #67e8f9;
+
+    background:
+        linear-gradient(
+            135deg,
+            #35215c,
+            #253d71
+        );
+}
+
+.youtube-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.youtube-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ff3150;
+
+    border: 3px solid white;
+
+    font-size: 24px;
+}
+
+.youtube-title h3 {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 9px;
+}
+
+.youtube-title p {
+    margin-top: 8px;
+
+    font-size: 18px;
+
+    opacity: 0.7;
+}
+
+.youtube-input {
+    display: flex;
+    gap: 8px;
+}
+
+.youtube-input input {
+    min-width: 260px;
+
+    padding: 10px;
+
+    background: #17142d;
+
+    color: white;
+
+    border: 3px solid #7cecff;
+
+    font-size: 17px;
+}
+
+.youtube-input button,
+.remove-youtube {
+    padding: 10px 14px;
+
+    background: #ffbf3f;
+
+    border: 3px solid #30203d;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 8px;
+}
+
+.youtube-player {
+    margin-top: 18px;
+}
+
+.youtube-player iframe {
+    width: 100%;
+
+    height: 400px;
+
+    border: 4px solid #ff5ebc;
+}
+
+/* =========================
+   MASTER VOLUME
+========================= */
+
+.master-volume {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    padding: 14px;
+
+    border: 3px solid #ffd166;
+
+    background: #30234f;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 8px;
+}
+
+.master-volume input {
+    flex: 1;
+}
+
+/* =========================
+   AMBIENT CARDS
+========================= */
+
+.ambient-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap: 14px;
+}
+
+.ambient-card {
+    padding: 12px;
+
+    border: 3px solid #fff;
+
+    box-shadow:
+        5px 5px 0 #0b0820;
+
+    transition: 0.2s;
+}
+
+.ambient-card:nth-child(1) {
+    background:
+        linear-gradient(
+            135deg,
+            #2674b8,
+            #5348a8
+        );
+}
+
+.ambient-card:nth-child(2) {
+    background:
+        linear-gradient(
+            135deg,
+            #a45d35,
+            #805047
+        );
+}
+
+.ambient-card:nth-child(3) {
+    background:
+        linear-gradient(
+            135deg,
+            #e64b31,
+            #8f2548
+        );
+}
+
+.ambient-card:nth-child(4) {
+    background:
+        linear-gradient(
+            135deg,
+            #168d9e,
+            #1855a2
+        );
+}
+
+.ambient-card:nth-child(5) {
+    background:
+        linear-gradient(
+            135deg,
+            #25754b,
+            #315d85
+        );
+}
+
+.ambient-card:nth-child(6) {
+    background:
+        linear-gradient(
+            135deg,
+            #7241b0,
+            #3d5eae
+        );
+}
+
+.ambient-card.active {
+    transform:
+        translate(-3px, -3px);
+
+    border-color: #ffe66d;
+
+    box-shadow:
+        7px 7px 0 #0b0820,
+        0 0 20px
+        rgba(
+            255,
+            230,
+            109,
+            0.35
+        );
+}
+
+.ambient-main {
+    width: 100%;
+
+    padding: 12px;
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.ambient-main span {
+    font-size: 30px;
+}
+
+.ambient-main strong {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 8px;
+}
+
+.ambient-main small {
+    font-size: 16px;
+}
+
+.volume-control {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 5px;
+}
+
+.volume-control input {
+    width: 100%;
+}
+
+.now-playing {
+    margin-top: 18px;
+
+    padding: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: 3px solid #2dd4bf;
+
+    background:
+        linear-gradient(
+            90deg,
+            #163f5d,
+            #382b6b
+        );
+}
+
+.now-playing strong {
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 8px;
+}
+
+.now-playing p {
+    margin-top: 8px;
+
+    font-size: 20px;
+}
+
+.now-playing button {
+    padding: 10px;
+
+    background: #ff6685;
+
+    border: 3px solid #30172c;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 7px;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty-state {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 50px;
+
+    border: 4px dashed #ffd166;
+
+    background:
+        linear-gradient(
+            135deg,
+            #35215c,
+            #24486b
+        );
+}
+
+.empty-state div {
+    font-size: 40px;
+}
+
+.empty-state h3 {
+    margin: 15px 0;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 11px;
+}
+
+.empty-state p {
+    font-size: 20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 30px;
+
+    font-family:
+        "Press Start 2P",
+        monospace;
+
+    font-size: 8px;
+
+    color: #ffd166;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .focus-nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ambient-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .youtube-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .youtube-input input {
+        min-width: 0;
+        flex: 1;
+    }
+}
+
+@media (max-width: 500px) {
+    .app {
+        padding: 18px 10px 40px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .theme-button {
+        flex: 1;
+    }
+
+    .ambient-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .youtube-input {
+        flex-direction: column;
+    }
+
+    .youtube-player iframe {
+        height: 250px;
+    }
+
+    .master-volume {
+        flex-wrap: wrap;
+    }
+} 
+/* =========================================================
+   DARK MODE — COLORFUL PIXEL WORLD
+   ========================================================= */
+
+/* =========================================================
+   DARK MODE — SINGLE PURPLE COLOR FAMILY
+   ========================================================= */
+
+.app.dark {
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(166, 108, 255, 0.22),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(111, 61, 170, 0.20),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #0d0718,
+            #160b27,
+            #10091f
+        );
+
+    color: #f4eaff;
+}
+
+
+/* HEADER */
+
+.app.dark .header {
+    background:
+        linear-gradient(
+            135deg,
+            #2a1545,
+            #432267,
+            #321653
+        );
+
+    border-color: #c9a2ff;
+
+    box-shadow:
+        8px 8px 0 #08040f,
+        0 0 25px rgba(166, 108, 255, 0.2);
+}
+
+.app.dark .logo {
+    text-shadow:
+        4px 4px 0 #160a27;
+}
+
+
+/* NAV */
+
+.app.dark .focus-nav a,
+.app.dark .focus-nav a:nth-child(1),
+.app.dark .focus-nav a:nth-child(2),
+.app.dark .focus-nav a:nth-child(3),
+.app.dark .focus-nav a:nth-child(4) {
+    background:
+        linear-gradient(
+            135deg,
+            #321750,
+            #542878
+        );
+
+    border-color: #b987ff;
+
+    box-shadow:
+        4px 4px 0 #08040f;
+}
+
+.app.dark .focus-nav a:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #452062,
+            #693590
+        );
+}
+
+
+/* DASHBOARD */
+
+.app.dark .dashboard-card {
+    border-color: #c9a2ff;
+
+    box-shadow:
+        7px 7px 0 #08040f;
+}
+
+/* Slightly different shades, SAME purple family */
+
+.app.dark .task-stat {
+    background:
+        linear-gradient(
+            135deg,
+            #4a205f,
+            #71358a
+        );
+}
+
+.app.dark .audio-stat {
+    background:
+        linear-gradient(
+            135deg,
+            #33205f,
+            #59409a
+        );
+}
+
+.app.dark .pomodoro-card {
+    background:
+        linear-gradient(
+            135deg,
+            #55205f,
+            #843b86
+        );
+}
+
+
+/* SECTIONS */
+
+.app.dark .form-container,
+.app.dark .media-section {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(31, 15, 50, 0.98),
+            rgba(48, 23, 72, 0.98)
+        );
+
+    border-color: #a66cff;
+
+    box-shadow:
+        7px 7px 0 #08040f;
+}
+
+
+/* INPUTS */
+
+.app.dark .task-form input,
+.app.dark .task-form select,
+.app.dark .status-select,
+.app.dark .youtube-input input {
+    background:
+        #150b24;
+
+    color: #f5eaff;
+
+    border-color: #8652c7;
+}
+
+.app.dark .task-form input:focus,
+.app.dark .task-form select:focus {
+    border-color: #c18cff;
+
+    box-shadow:
+        4px 4px 0 #30154a,
+        0 0 15px rgba(193, 140, 255, 0.2);
+}
+
+.app.dark .status-select {
+    border-color: #8652c7;
+}
+
+
+/* PRIMARY BUTTON */
+
+.app.dark .primary-button {
+    background:
+        linear-gradient(
+            90deg,
+            #48206b,
+            #7040a0,
+            #925bc2
+        );
+
+    border-color: #d4b2ff;
+
+    box-shadow:
+        5px 5px 0 #08040f;
+}
+
+
+/* TASK CARDS */
+
+.app.dark .task-card,
+.app.dark .task-card:nth-child(3n + 1),
+.app.dark .task-card:nth-child(3n + 2),
+.app.dark .task-card:nth-child(3n + 3) {
+    background:
+        linear-gradient(
+            135deg,
+            #28133d,
+            #3b1d57
+        );
+
+    border-color: #9d6bd1;
+
+    box-shadow:
+        6px 6px 0 #08040f;
+}
+
+/* Alternate shades without changing the color family */
+
+.app.dark .task-card:nth-child(3n + 2) {
+    background:
+        linear-gradient(
+            135deg,
+            #30164b,
+            #472267
+        );
+}
+
+.app.dark .task-card:nth-child(3n + 3) {
+    background:
+        linear-gradient(
+            135deg,
+            #241238,
+            #351b50
+        );
+}
+
+
+/* PRIORITIES */
+
+.app.dark .priority.low {
+    background: #70489a;
+    color: #ead9ff;
+}
+
+.app.dark .priority.medium {
+    background: #8b61b5;
+    color: #f4e8ff;
+}
+
+.app.dark .priority.high {
+    background: #a94f91;
+    color: #ffe6fb;
+}
+
+
+/* EDIT / DELETE */
+
+.app.dark .edit-button {
+    background: #8052a8;
+    color: #f8edff;
+}
+
+.app.dark .delete-button {
+    background: #944878;
+    color: #ffeafa;
+}
+
+
+/* YOUTUBE */
+
+.app.dark .youtube-box {
+    background:
+        linear-gradient(
+            135deg,
+            #251239,
+            #3a1d53
+        );
+
+    border-color: #9e6bd3;
+}
+
+.app.dark .youtube-icon {
+    background: #63327e;
+}
+
+.app.dark .youtube-player iframe {
+    border-color: #9e6bd3;
+}
+
+
+/* MASTER VOLUME */
+
+.app.dark .master-volume {
+    background:
+        linear-gradient(
+            135deg,
+            #28143e,
+            #43215d
+        );
+
+    border-color: #a66cff;
+}
+
+
+/* AMBIENT CARDS */
+
+.app.dark .ambient-card {
+    background:
+        linear-gradient(
+            135deg,
+            #241136,
+            #3a1b52
+        ) !important;
+
+    border-color: #9664c7;
+}
+
+.app.dark .ambient-card:nth-child(2) {
+    background:
+        linear-gradient(
+            135deg,
+            #29133e,
+            #45205d
+        ) !important;
+}
+
+.app.dark .ambient-card:nth-child(3) {
+    background:
+        linear-gradient(
+            135deg,
+            #301542,
+            #51215e
+        ) !important;
+}
+
+.app.dark .ambient-card:nth-child(4) {
+    background:
+        linear-gradient(
+            135deg,
+            #211034,
+            #382052
+        ) !important;
+}
+
+.app.dark .ambient-card:nth-child(5) {
+    background:
+        linear-gradient(
+            135deg,
+            #26123a,
+            #3d2057
+        ) !important;
+}
+
+.app.dark .ambient-card:nth-child(6) {
+    background:
+        linear-gradient(
+            135deg,
+            #301542,
+            #4c2669
+        ) !important;
+}
+
+
+/* ACTIVE AMBIENT */
+
+.app.dark .ambient-card.active {
+    border-color: #d1a7ff;
+
+    box-shadow:
+        7px 7px 0 #08040f,
+        0 0 22px rgba(166, 108, 255, 0.28);
+}
+
+
+/* NOW PLAYING */
+
+.app.dark .now-playing {
+    background:
+        linear-gradient(
+            90deg,
+            #241035,
+            #40205c,
+            #54266d
+        );
+
+    border-color: #a66cff;
+}
+
+
+/* EMPTY STATE */
+
+.app.dark .empty-state {
+    background:
+        linear-gradient(
+            135deg,
+            #241137,
+            #41205b
+        );
+
+    border-color: #a66cff;
+}
+
+
+/* THEME BUTTON */
+
+.app.dark .theme-button {
+    background:
+        linear-gradient(
+            135deg,
+            #6f4496,
+            #925bb7
+        );
+
+    color: #fff4ff;
+
+    border-color: #d5b5ff;
+
+    box-shadow:
+        4px 4px 0 #08040f;
+}
+
+
+/* FOOTER */
+
+.app.dark footer {
+    color: #b98aff;
+}
+
+
+/* TIMER */
+
+.app.dark .timer-running .timer {
+    text-shadow:
+        4px 4px 0 #54206d;
+}
+
+
+/* GENERAL DARK PIXEL GLOW */
+
+.app.dark .dashboard-card:hover,
+.app.dark .task-card:hover,
+.app.dark .ambient-card:hover {
+    box-shadow:
+        8px 8px 0 #08040f,
+        0 0 18px rgba(166, 108, 255, 0.16);
+}
